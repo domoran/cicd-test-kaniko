@@ -2,6 +2,10 @@ kind: pipeline
 type: kubernetes
 name: default
 
+platform:
+  os: linux
+  arch: arm64
+
 steps:
 - name: kaniko
   image: gcr.io/kaniko-project/executor:latest
@@ -11,10 +15,5 @@ steps:
       from_secret: docker_username
     DOCKER_PASSWORD:
       from_secret: docker_password
-  commands:
+  arguments:
   - /kaniko/executor --context . --destination $DOCKER_REGISTRY/hello-world:latest
-
-- name: deploy
-  image: kubectl
-  commands:
-  - kubectl apply -f k8s/deployment.yaml
