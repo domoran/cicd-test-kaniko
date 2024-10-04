@@ -16,4 +16,4 @@ steps:
     DOCKER_PASSWORD:
       from_secret: docker_password
   arguments:
-  - /kaniko/executor --context . --no-push
+  - /kaniko/executor --no-push --context . 
