@@ -16,4 +16,4 @@ steps:
     DOCKER_PASSWORD:
       from_secret: docker_password
   arguments:
-  - /kaniko/executor --context . --destination $DOCKER_REGISTRY/hello-world:latest
+  - /kaniko/executor --context . --no-push
