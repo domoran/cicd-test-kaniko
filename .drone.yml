@@ -8,9 +8,9 @@ platform:
 
 steps:
 - name: kaniko
-  image: gcr.io/kaniko-project/executor:latest
+  image: plugins/kaniko
   environment:
-    DOCKER_REGISTRY: <your-docker-registry>
+    DOCKER_REGISTRY: hub.docker.com
     DOCKER_USERNAME:
       from_secret: docker_username
     DOCKER_PASSWORD:
