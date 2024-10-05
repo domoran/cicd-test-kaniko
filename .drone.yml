@@ -13,7 +13,7 @@ steps:
       - name: docker-config
         path: /kaniko/.docker
     commands:
-      - /kaniko/executor --context $DRONE_WORKSPACE --destination registry-docker-registry:5000/x:latest
+      - /kaniko/executor --context $DRONE_WORKSPACE --destination registry-docker-registry:5000/test/x:latest
 
 volumes:
   - name: docker-config
