@@ -2,18 +2,19 @@ kind: pipeline
 type: kubernetes
 name: default
 
-platform:
-  os: linux
-  arch: arm64
-
 steps:
-- name: kaniko
-  image: plugins/kaniko
-  environment:
-    DOCKER_REGISTRY: hub.docker.com
-    DOCKER_USERNAME:
-      from_secret: docker_username
-    DOCKER_PASSWORD:
-      from_secret: docker_password
-  commands:
-  - pwd
+  - name: kaniko-build
+    image: gcr.io/kaniko-project/executor:v1.12.0-debug  # Use the debug version, it supports ARM
+    environment:
+      # Set Kaniko flags
+      - DOCKERFILE: Dockerfile
+      - CONTEXT: /workspace
+    volumes:
+      - name: docker-config
+        path: /kaniko/.docker
+    commands:
+      - /kaniko/executor --context $CI_WORKSPACE --dockerfile $DOCKERFILE --no-push
+
+volumes:
+  - name: docker-config
+    temp: {}
