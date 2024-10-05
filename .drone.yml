@@ -8,11 +8,12 @@ steps:
     environment:
       DOCKERFILE: Dockerfile
       CONTEXT: /workspace
+      DOCKER_REGISTRY: registry-docker-registry:5000  
     volumes:
       - name: docker-config
         path: /kaniko/.docker
     commands:
-      - /kaniko/executor --context $DRONE_WORKSPACE --no-push
+      - /kaniko/executor --context $DRONE_WORKSPACE --destination $$DOCKER_REGISTRY/x:latest
 
 volumes:
   - name: docker-config
