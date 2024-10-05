@@ -6,9 +6,8 @@ steps:
   - name: kaniko-build
     image: gcr.io/kaniko-project/executor:v1.12.0-debug  # Use the debug version, it supports ARM
     environment:
-      # Set Kaniko flags
-      - DOCKERFILE: Dockerfile
-      - CONTEXT: /workspace
+      DOCKERFILE: Dockerfile
+      CONTEXT: /workspace
     volumes:
       - name: docker-config
         path: /kaniko/.docker
