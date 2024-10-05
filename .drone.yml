@@ -12,7 +12,7 @@ steps:
       - name: docker-config
         path: /kaniko/.docker
     commands:
-      - /kaniko/executor --context ${CI_WORKSPACE} --dockerfile ${DOCKERFILE} --no-push
+      - /kaniko/executor --context $$CI_WORKSPACE --dockerfile $$DOCKERFILE --no-push
 
       
 
