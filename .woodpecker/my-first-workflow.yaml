@@ -6,7 +6,7 @@ steps:
 - name: publish
   image: woodpeckerci/plugin-kaniko
   settings:
-    registry: registry-docker-registry:5000
+    registry: registry-docker-registry.default.svc:5000
     repo: registry-docker-registry/test
     tags: ${CI_COMMIT_SHA}
     cache: true
