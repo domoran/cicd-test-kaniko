@@ -7,7 +7,7 @@ steps:
   image: woodpeckerci/plugin-kaniko
   settings:
     registry: registry-docker-registry:5000
-    repo: registry-docker-registry:5000/test
+    repo: registry-docker-registry/test
     tags: ${CI_COMMIT_SHA}
     cache: true
     skip_tls_verify: false # set to true for testing registries ONLY with self-signed certs
