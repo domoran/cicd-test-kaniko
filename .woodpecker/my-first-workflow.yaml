@@ -3,13 +3,14 @@ when:
 - event: push
   branch: master
 steps:
-- name: build
-  image: debian
-  commands:
-  - echo "This is the build step"
-  - echo "binary-data-123" > executable
-- name: a-test-step
-  image: golang:1.16
-  commands:
-  - echo "Testing ...3"
-  - ./executable
+- name: publish
+  image: woodpeckerci/plugin-kaniko
+  settings:
+    registry: registry-docker-registry:5000
+    repo: registry-docker-registr:5000/test
+    tags: ${CI_COMMIT_SHA}
+    cache: true
+    skip_tls_verify: false # set to true for testing registries ONLY with self-signed certs
+    build_args:
+    - COMMIT_SHA=${CI_COMMIT_SHA}
+    - COMMIT_AUTHOR_EMAIL=${CI_COMMIT_AUTHOR_EMAIL}
