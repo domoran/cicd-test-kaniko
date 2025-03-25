@@ -11,7 +11,7 @@ steps:
     tags: ${CI_COMMIT_SHA}
     cache: true
     skip_tls_verify: true # set to true for testing registries ONLY with self-signed certs
-    insecure-registry: true
+    insecure: true
     build_args:
     - COMMIT_SHA=${CI_COMMIT_SHA}
     - COMMIT_AUTHOR_EMAIL=${CI_COMMIT_AUTHOR_EMAIL}
